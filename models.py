@@ -42,7 +42,7 @@ class account_invoice(models.Model):
                 		    raise RedirectWarning(msg, action.id, _('Go to the configuration panel'))
 
 			        if type in ('out_invoice', 'out_refund'):
-					if company_id.id == 1:
+					if company_id == 1:
 			                    #acc_id = rec_account.id
 			                    acc_id = 11
 					else:
@@ -63,7 +63,7 @@ class account_invoice(models.Model):
                         	    action = self.env.ref('account.action_account_config')
 	                            msg = _('Cannot find a chart of accounts for this company, You should configure it. \nPlease go to Account Configuration.')
         	                    raise RedirectWarning(msg, action.id, _('Go to the configuration panel'))
-				if company_id.id == 1:
+				if company_id == 1:
 					taxes_id = (6,0,[8])
 				else:
 					taxes_id = (6,0,[36])
