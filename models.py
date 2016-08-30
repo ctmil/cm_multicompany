@@ -25,21 +25,21 @@ class account_invoice(models.Model):
 
 		if company_id and part_id and type:
 			p = self.env['res.partner'].browse(part_id)
-			if p.property_account_payable and p.property_account_receivable and \
-	                    p.property_account_payable.company_id.id != company_id and \
-        	            p.property_account_receivable.company_id.id != company_id:
-                		prop = self.env['ir.property']
-		                rec_dom = [('name', '=', 'property_account_receivable'), ('company_id', '=', company_id)]
-		                pay_dom = [('name', '=', 'property_account_payable'), ('company_id', '=', company_id)]
-		                res_dom = [('res_id', '=', 'res.partner,%s' % part_id)]
-                		rec_prop = prop.search(rec_dom + res_dom) or prop.search(rec_dom)
-		                pay_prop = prop.search(pay_dom + res_dom) or prop.search(pay_dom)
-                		rec_account = rec_prop.get_by_record(rec_prop)
-			        pay_account = pay_prop.get_by_record(pay_prop)
-		                if not rec_account and not pay_account:
-                		    action = self.env.ref('account.action_account_config')
-		                    msg = _('Cannot find a chart of accounts for this company, You should configure it. \nPlease go to Account Configuration.')
-                		    raise RedirectWarning(msg, action.id, _('Go to the configuration panel'))
+			#if p.property_account_payable and p.property_account_receivable and \
+	                #    p.property_account_payable.company_id.id != company_id and \
+        	        #    p.property_account_receivable.company_id.id != company_id:
+                #	#	prop = self.env['ir.property']
+		        #        rec_dom = [('name', '=', 'property_account_receivable'), ('company_id', '=', company_id)]
+		        #        pay_dom = [('name', '=', 'property_account_payable'), ('company_id', '=', company_id)]
+		        #        res_dom = [('res_id', '=', 'res.partner,%s' % part_id)]
+                	#	rec_prop = prop.search(rec_dom + res_dom) or prop.search(rec_dom)
+		         #       pay_prop = prop.search(pay_dom + res_dom) or prop.search(pay_dom)
+                	#	rec_account = rec_prop.get_by_record(rec_prop)
+			#        pay_account = pay_prop.get_by_record(pay_prop)
+		        #        if not rec_account and not pay_account:
+                	#	    action = self.env.ref('account.action_account_config')
+		        #            msg = _('Cannot find a chart of accounts for this company, You should configure it. \nPlease go to Account Configuration.')
+                	#	    raise RedirectWarning(msg, action.id, _('Go to the configuration panel'))
 
 			if type in ('out_invoice', 'out_refund'):
 				if company_id == 1:
