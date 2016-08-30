@@ -64,9 +64,9 @@ class account_invoice(models.Model):
 	                            msg = _('Cannot find a chart of accounts for this company, You should configure it. \nPlease go to Account Configuration.')
         	                    raise RedirectWarning(msg, action.id, _('Go to the configuration panel'))
 				if company_id == 1:
-					taxes_id = (6,0,[8])
+					taxes_id = [(6,0,[8])]
 				else:
-					taxes_id = (6,0,[36])
+					taxes_id = [(6,0,[36])]
                 	        line.write({'account_id': accounts[-1].id,'invoice_line_tax_id': taxes_id})
 		        else:
 		                for line_cmd in invoice_line or []:
