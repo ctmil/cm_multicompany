@@ -46,7 +46,7 @@ class account_invoice(models.Model):
 			                    #acc_id = rec_account.id
 			                    acc_id = 11
 					else:
-					    acc.id = 140
+					    acc_id = 140
 			        else:
 		                    acc_id = pay_account.id
                 		values= {'account_id': acc_id}
