@@ -41,15 +41,15 @@ class account_invoice(models.Model):
 		                    msg = _('Cannot find a chart of accounts for this company, You should configure it. \nPlease go to Account Configuration.')
                 		    raise RedirectWarning(msg, action.id, _('Go to the configuration panel'))
 
-			        if type in ('out_invoice', 'out_refund'):
-					if company_id == 1:
-			                    #acc_id = rec_account.id
-			                    acc_id = 11
-					else:
-					    acc_id = 140
-			        else:
-		                    acc_id = pay_account.id
-                		values= {'account_id': acc_id}
+			if type in ('out_invoice', 'out_refund'):
+				if company_id == 1:
+			             #acc_id = rec_account.id
+			        	acc_id = 11
+				else:
+					acc_id = 140
+		        else:
+	                	acc_id = pay_account.id
+                	values= {'account_id': acc_id}
 
 	        if self:
                 	if company_id:
